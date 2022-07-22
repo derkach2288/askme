@@ -17,6 +17,7 @@
 
   <% @questions.each do |question| %>
     <div class="mt-sm container">
-      <%= render question %>
+      <%= render question %>   <%# <%= link_to "#{question.body}", "/questions/#{question.id}" %>
+                               <%# <%= link_to "#{question.body}", question_path(question.id) %>
     </div>
   <% end %>
