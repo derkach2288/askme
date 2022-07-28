@@ -1,5 +1,8 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[update show destroy edit]   # before_action викликає метод set_question із приватних методів перед методами []
+  before_action :authenticate_user!, :only => [:create, :update, :destroy]
+  # before_action :authenticate_user!, :only => [:create, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index, :show]
 
   def create
     @question = Question.create(question_params) 
