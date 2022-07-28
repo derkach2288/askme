@@ -3,9 +3,11 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, :only => [:create, :update, :destroy]
   # before_action :authenticate_user!, :only => [:create, :update, :destroy]
   before_action :authenticate_user!, :except => [:index, :show]
+  before_action :owner, only: %i[update destroy edit]
 
   def create
-    @question = Question.create(question_params) 
+    # @question = current_user.questions.build(question_params)
+    @question = Question.create(question_params)
     
                                       # @question = Question.create(body: params[:question][:body], 
                                       # user_id: params[:question][:user_id])
@@ -39,11 +41,13 @@ class QuestionsController < ApplicationController
   end
 
   def index
+    # @question = current_user.questions.build
     @question = Question.new
     @questions = Question.all
   end
 
   def new
+    # @question = current_usercurrent_user.build
     @question = Question.new
   end
 
@@ -52,6 +56,11 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def owner
+    @question = current_user.questions.find_by(params[:id])
+    redirect_to questions_path, notice: 'У вас немає дозволу для зміни цього запитання' if @question.nil?
+  end
 
   def question_params
     params.require(:question).permit(:body, :user_id)
