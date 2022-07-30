@@ -18,7 +18,7 @@
   <div>
   
   <%# <% if question.user.email == current_user.email якщо розлогінитись  - видає помилку undefined method `email' for nil:NilClass %>
-    <% if question.user == current_user %> %>
+    <% if question.user == current_user %>
     <%= link_to fa_icon('pencil'), edit_question_path(question), title: 'Змінити запитання' %>
     <%= button_to fa_icon('trash-o'), question_path(question), method: :delete, title: 'Видалити запитання' %>
     <% end %>
