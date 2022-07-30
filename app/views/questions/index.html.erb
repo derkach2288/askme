@@ -18,6 +18,6 @@
   <% @questions.each do |question| %>
     <div class="mt-sm container">
       <%= render question %>
-      <%= link_to "Відкрити", question_path(question.id) %>
+      <%= link_to "Відкрити", question_path(question) %>
     </div>
   <% end %>

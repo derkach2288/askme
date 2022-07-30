@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
         <a href="#" class="button"> 
-            Ласкаво просимо, <%= current_user.id %>
+            Ласкаво просимо, <%= current_user.email %> Ваш ID:<%= current_user.id %>
         </a>
         <%= button_to "Вихід", destroy_user_session_path, method: :delete, class: "button" %>
         <%= link_to "Редагувати", edit_user_registration_path, class: "button" %>
