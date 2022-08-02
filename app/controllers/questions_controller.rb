@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
   before_action :owner, only: %i[update destroy edit]
 
   def create
-     @question = current_user.questions.build(question_params)
+    @question = current_user.questions.build(question_params)
+    @question.save
     # @question = Question.create(question_params)
     
                                                     # @question = Question.create(body: params[:question][:body], 
@@ -41,13 +42,13 @@ class QuestionsController < ApplicationController
 
   def index
     # @question = current_user.questions.build
-    # @question = Question.new
+    @question = Question.new
     @questions = Question.all
   end
 
   def new
-     @question = current_user.questions.build
-    # @question = Question.new
+    #  @question = current_user.questions.build
+    @question = Question.new
   end
 
   def edit
