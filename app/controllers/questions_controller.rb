@@ -5,13 +5,13 @@ class QuestionsController < ApplicationController
   before_action :owner, only: %i[update destroy edit]
 
   def create
-    # @question = current_user.questions.build(question_params)
-    @question = Question.create(question_params)
+     @question = current_user.questions.build(question_params)
+    # @question = Question.create(question_params)
     
-                                      # @question = Question.create(body: params[:question][:body], 
-                                      # user_id: params[:question][:user_id])
-                                      # або
-                                      # @question = Question.create(params[:questions]) 
+                                                    # @question = Question.create(body: params[:question][:body], 
+                                                    #                          user_id: params[:user][:current_user.id])
+                                                                                      # або
+                                                                                      # @question = Question.create(params[:questions]) 
 
     redirect_to question_path(@question), notice: 'Нове питання створено'    # notice: це флеш, далі у layout
   end
@@ -41,13 +41,13 @@ class QuestionsController < ApplicationController
 
   def index
     # @question = current_user.questions.build
-    @question = Question.new
+    # @question = Question.new
     @questions = Question.all
   end
 
   def new
-    # @question = current_usercurrent_user.build
-    @question = Question.new
+     @question = current_user.questions.build
+    # @question = Question.new
   end
 
   def edit
@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :user_id)
+    params.require(:question).permit(:body)
   end
 
   def set_question
