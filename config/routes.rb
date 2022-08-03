@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'questions#index'  # щоб не писати на головній сторінці шлях /questions
   resources:questions
                                     # post '/questions', to: 'questions#create'

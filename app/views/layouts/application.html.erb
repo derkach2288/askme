@@ -11,10 +11,16 @@
   </head>
 
   <body>
+
     <div class="wrapper">
+    <!--devise-->
+      <%= render '/layouts/auth_header' %>
+    <!--devise-->
     <% if flash[:notice].present? %>
       <p class="mb mt message message-notice"><%= flash[:notice] %></p>
     <% end %>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
     
       <%= yield %>
     </div>

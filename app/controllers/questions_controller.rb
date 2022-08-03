@@ -1,13 +1,18 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[update show destroy edit]   # before_action викликає метод set_question із приватних методів перед методами []
+  # before_action :authenticate_user!, :only => [:create, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :owner, only: %i[update destroy edit]
 
   def create
-    @question = Question.create(question_params) 
+    @question = current_user.questions.build(question_params)
+    @question.save
+    # @question = Question.create(question_params)
     
-                                      # @question = Question.create(body: params[:question][:body], 
-                                      # user_id: params[:question][:user_id])
-                                      # або
-                                      # @question = Question.create(params[:questions]) 
+                                                    # @question = Question.create(body: params[:question][:body], 
+                                                    #                          user_id: params[:user][:current_user.id])
+                                                                                      # або
+                                                                                      # @question = Question.create(params[:questions]) 
 
     redirect_to question_path(@question), notice: 'Нове питання створено'    # notice: це флеш, далі у layout
   end
@@ -36,11 +41,13 @@ class QuestionsController < ApplicationController
   end
 
   def index
+    # @question = current_user.questions.build
     @question = Question.new
     @questions = Question.all
   end
 
   def new
+    #  @question = current_user.questions.build
     @question = Question.new
   end
 
@@ -50,8 +57,14 @@ class QuestionsController < ApplicationController
 
   private
 
+  def owner
+    # @question = current_user.questions.find_by(params[:id])  # працює некорректно, завжди відкриває перше створене запитання
+    @question = current_user.questions.where(id: params[:id]).first
+    redirect_to questions_path, notice: 'У вас немає дозволу для зміни цього запитання' if @question.nil?
+  end
+
   def question_params
-    params.require(:question).permit(:body, :user_id)
+    params.require(:question).permit(:body)
   end
 
   def set_question
