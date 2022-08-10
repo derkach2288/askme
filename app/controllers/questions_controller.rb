@@ -43,7 +43,8 @@ class QuestionsController < ApplicationController
   def index
     # @question = current_user.questions.build
     @question = Question.new
-    @questions = Question.all
+    @questions = Question.all.includes(:category, :user)
+  
   end
 
   def new
