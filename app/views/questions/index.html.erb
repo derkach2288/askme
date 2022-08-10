@@ -1,6 +1,8 @@
 <div class="container">
   <p class="mt">
     <%= link_to "Створити нове питання", new_question_path, class: 'button button-main' %>
+    <%= link_to "Створити нову категорію", new_category_path, class: 'button button-main' %>
+    <%= link_to "Всі категорії", categories_path, class: 'button button-main' %>
   </p>
 
   <p class="mt">
@@ -17,6 +19,11 @@
 
   <% @questions.each do |question| %>
     <div class="mt-sm container">
+      <% if question.category.present? %>
+        <div class="mb-sm">
+          <%= link_to question.category.name, question.category %>
+        </div>
+      <% end %>
       <%= render question %>
       <%= link_to "Відкрити", question_path(question) %>
     </div>

@@ -17,3 +17,10 @@
 
   <p class="mt"><%= link_to "Всі категорії", categories_path %></p>
 </div>
+
+  <% @category.questions.each do |question| %>
+    <div class="mt-sm container">
+      <%= render question %>
+      <%= link_to "Відкрити", question_path(question) %>
+    </div>
+  <% end %>
