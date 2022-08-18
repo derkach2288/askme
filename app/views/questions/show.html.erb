@@ -1,6 +1,10 @@
 <div class="container">
   <h2 class="title-lg mb">Питання <%= @question.id %> </h2>
-
+      <% if @question.category.present? %>
+        <div class="mb-sm">
+          <%= link_to @question.category.name, @question.category %>
+        </div>
+      <% end %>
   <%= render 'question', question: @question %>
 
   <p class="mt"><%= link_to "Всі питання", questions_path %></p>

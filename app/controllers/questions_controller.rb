@@ -43,7 +43,8 @@ class QuestionsController < ApplicationController
   def index
     # @question = current_user.questions.build
     @question = Question.new
-    @questions = Question.all
+    @questions = Question.all.includes(:category, :user)
+  
   end
 
   def new
@@ -64,7 +65,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body)
+    params.require(:question).permit(:body, :category_id)
   end
 
   def set_question

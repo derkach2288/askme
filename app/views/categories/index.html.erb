@@ -1,0 +1,36 @@
+<div class="container">
+  <p class="mt">
+    <%= link_to "Створити нову категорію", new_category_path, class: 'button button-main' %>
+  </p>
+</div>
+
+  <% @categories.each do |category| %>
+    <div class="mt-sm container">
+
+    <div class="mb-sm">
+      ID категорії: <%= category.id %>
+    </div>
+
+<div class="mb-sm">
+  <%= category.name %>
+</div>
+
+<div class="text-sm question-footer">
+  <div class="text-grey">
+    <%= l(category.created_at, format: :short) %>
+  </div>
+
+  <div>
+    <%= link_to fa_icon('pencil'), edit_category_path(category), title: 'Змінити назву категорії' %>
+    <%= button_to fa_icon('trash-o'), category_path(category), method: :delete, title: 'Видалити категорію' %>
+  </div>
+</div> 
+      <%= link_to "Відкрити", category_path(category) %>
+    </div>
+  <% end %>
+
+  <div>
+  <p class="mt">
+    <%= link_to "Всі питання", questions_path, class: 'button button-main' %>
+  </p>
+</div>
