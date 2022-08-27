@@ -14,7 +14,10 @@ gem "jbuilder"
 gem "bootsnap", require: false
 gem "devise"
 gem 'pg'
-
+gem "sidekiq", "~> 6.5"
+gem "redis", "~> 4.0"
+gem "jsbundling-rails"
+gem "cssbundling-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -22,7 +25,7 @@ end
 
 group :development do
   gem "web-console"
-
+  gem "rack-mini-profiler"
 end
 
 group :test do
