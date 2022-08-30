@@ -56,7 +56,25 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # Disable digesting assets with an md5 tag.
+  config.assets.digest = false
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Raises error for missing translations.
+  # config.i18n.raise_on_missing_translations = true
+
+  # Annotate rendered view with file names.
+  # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Uncomment if you wish to allow Action Cable access from any origin.
+  # config.action_cable.disable_request_forgery_protection = true
+
+  # Comma separated list of IP addresses / CIDRs that can use the web-console
+  # which is invoked with `console` in a controller or <% console %> in a view.
+  #
+  # Docker supports a bunch of ranges so let's just support everything. This
+  # isn't insecure due to only running in development.
+  config.web_console.allowed_ips = ["0.0.0.0/0"]
 end
