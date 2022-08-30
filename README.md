@@ -4,7 +4,7 @@
 
 Клонуйте це сховище будь-де, де вам потрібно, і перемістіть його в каталог:
 
-git clone --branch=docker https://github.com/derkach2288/askme.git askme cd askme
+git clone --branch=docker-version-2 https://github.com/derkach2288/askme.git askme cd askme
 
 Будуйте все: Перший раз, коли ви запустите це, це займе 5-10 хвилин залежно від швидкості підключення до Інтернету та апаратних характеристик комп’ютера. Це тому, що він збирається завантажити кілька зображень Docker і створити залежності Ruby + Yarn.
 
