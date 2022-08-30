@@ -1,24 +1,17 @@
-# README
+Запуск цієї програми Вам потрібно буде встановити Docker . Він доступний у Windows, macOS і більшості дистрибутивів Linux. Якщо ви вперше користуєтеся Docker і хочете вивчити його детально, перегляньте посилання на додаткові ресурси внизу цього README.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Якщо ви використовуєте Windows, очікується, що ви слідкуєте за WSL або WSL 2 . Це тому, що ми будемо запускати команди оболонки. Ви завжди можете змінити ці команди для PowerShell, якщо хочете.
 
-Things you may want to cover:
+Клонуйте це сховище будь-де, де вам потрібно, і перемістіть його в каталог:
 
-* Ruby version
+git clone --branch=docker https://github.com/derkach2288/askme.git askme cd askme
 
-* System dependencies
+Будуйте все: Перший раз, коли ви запустите це, це займе 5-10 хвилин залежно від швидкості підключення до Інтернету та апаратних характеристик комп’ютера. Це тому, що він збирається завантажити кілька зображень Docker і створити залежності Ruby + Yarn.
 
-* Configuration
+docker-compose up --build Тепер, коли все створено та запущено, ми можемо ставитися до нього як до будь-якої іншої програми Rails.
 
-* Database creation
+Перегляньте це в браузері: Відвідайте http://localhost:8000 у своєму улюбленому браузері.
 
-* Database initialization
+Припинення всього: docker-compose down
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Повторний запуск всіх контейнерів docker-compose up Якщо при повторному запуску виводить, що сервер вже запущений "A server is already running. Check /app/tmp/pids/server.pid." Треба видалити server.pid командою: rm tmp/pids/server.pid
